@@ -249,7 +249,8 @@ extension CoreDataStack {
      Remove duplicate tags from their respective posts, replacing them with the winner.
      */
     private func remove(duplicatedTags: [Tag], winner: Tag, performingContext: NSManagedObjectContext) {
-        duplicatedTags.forEach { tag in
+        #warning("Removing duplicate tags is not implemented")
+        /*duplicatedTags.forEach { tag in
             defer { performingContext.delete(tag) }
             guard let posts = tag.posts else { return }
             
@@ -258,6 +259,6 @@ extension CoreDataStack {
                     post.replaceTags(at: index, with: winner)
                 }
             }
-        }
+        }*/
     }
 }

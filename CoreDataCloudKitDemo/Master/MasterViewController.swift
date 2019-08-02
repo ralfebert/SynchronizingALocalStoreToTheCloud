@@ -96,7 +96,8 @@ extension MasterViewController {
         cell.collectionView.reloadData()
         cell.collectionView.invalidateIntrinsicContentSize()
         
-        if let attachments = post.attachments, attachments.array.isEmpty {
+        let attachments = post.attachmentsList
+        if attachments.isEmpty {
             cell.hasAttachmentLabel.isHidden = true
         } else {
             cell.hasAttachmentLabel.isHidden = false

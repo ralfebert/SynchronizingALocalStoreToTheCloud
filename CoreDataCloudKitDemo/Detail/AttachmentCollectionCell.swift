@@ -37,7 +37,8 @@ class AttachmentCollectionCell: UITableViewCell, UICollectionViewDelegate, UICol
      Filter the list of valid attachments every time the UICollectionView reloads data.
      */
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let post = post, let attachments = post.attachments?.array as? [Attachment] else { return 0 }
+        guard let post = post else { return 0 }
+        let attachments = post.attachmentsList
 
         // A newly added attachment by this peer doesn’t have imageData, but getThumbnail() should immediately return with the .thumbnail.
         validAttachments = attachments.filter { return !($0.imageData == nil && $0.getThumbnail() == nil) }

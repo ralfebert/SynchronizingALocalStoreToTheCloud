@@ -17,3 +17,21 @@ enum Schema {
         case uuid, name, postCount
     }
 }
+
+extension Post {
+    
+    var tagsList : [Tag] {
+        guard let list = self.tags?.allObjects as? [Tag] else { return [] }
+        return list.sorted { (lhs, rhs) -> Bool in
+            (lhs.name ?? "") < (rhs.name ?? "")
+        }
+    }
+    
+    var attachmentsList : [Attachment] {
+        guard let list = self.attachments?.allObjects as? [Attachment] else { return [] }
+        return list.sorted { (lhs, rhs) -> Bool in
+            lhs.objectID.uriRepresentation().absoluteString < rhs.objectID.uriRepresentation().absoluteString
+        }
+    }
+    
+}

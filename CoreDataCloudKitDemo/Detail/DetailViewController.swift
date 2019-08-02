@@ -104,7 +104,7 @@ class DetailViewController: SpinnerViewController {
             context.save(with: .updatePost)
         }
         
-        guard let attachments = post.attachments else { return }
+        let attachments = post.attachmentsList
         
         // Call RunLoop.run(until:) to show the spinner immediately.
         spinner.startAnimating()

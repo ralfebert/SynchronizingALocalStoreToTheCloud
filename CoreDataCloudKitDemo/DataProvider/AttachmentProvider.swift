@@ -75,12 +75,9 @@ class AttachmentProvider {
      
      Save to the store for synchronization only when the post is saved.
      */
-    func saveImageDataIfNeeded(for attachments: NSOrderedSet, taskContext: NSManagedObjectContext,
+    func saveImageDataIfNeeded(for attachments: [Attachment], taskContext: NSManagedObjectContext,
                                completionHandler: (() -> Void)? = nil) {
-        guard let attachments = attachments.array as? [Attachment] else {
-            completionHandler?()
-            return
-        }
+
         // Filter out attachments from previous editing sessions
         let newAttachments = attachments.filter { return $0.imageData == nil }
         

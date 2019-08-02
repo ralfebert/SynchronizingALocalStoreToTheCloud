@@ -42,7 +42,7 @@ class TagCollectionCell: UITableViewCell, UICollectionViewDelegate, UICollection
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCVCell", for: indexPath) as? TagCVCell else {
             fatalError("###\(#function): Failed to dequeue TagCVCell! Check the cell reusable identifier in Main.storyboard.")
         }
-        guard let tag = post?.tags?.object(at: indexPath.row) as? Tag else { return cell }
+        guard let tag = post?.tagsList[indexPath.row] else { return cell }
         
         cell.tagLabel.text = tag.name
         cell.tagLabel.textColor = tag.color as? UIColor
@@ -52,7 +52,7 @@ class TagCollectionCell: UITableViewCell, UICollectionViewDelegate, UICollection
     @objc(collectionView:layout:sizeForItemAtIndexPath:)
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let tag = post?.tags?.object(at: indexPath.item) as? Tag else {
+        guard let tag = post?.tagsList[indexPath.item] as? Tag else {
             fatalError("###\(#function): Failed to retrieve a tag from post.tags at: \(indexPath.item)")
         }
         return TagLabel.sizeOf(text: tag.name!, font: tagLabelFont)
